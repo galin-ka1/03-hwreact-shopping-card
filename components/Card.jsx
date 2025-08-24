@@ -7,7 +7,7 @@ const Card = () => {
     const [items, setItems] = useState([]);
 
     const addItem = () => {
-        setItems([...items, newItem]);
+        setItems([...items, { name: newItem }]);
         setNewItem("");
     }
 
@@ -16,6 +16,12 @@ const Card = () => {
         newItems.splice(index, 1)
         setItems(newItems);
     }
+    const editItem = (index, newName) => {
+        const updatedItems = [...items];
+        updatedItems[index].name = newName;
+        setItems(updatedItems);
+    }
+
 
     return (
         <div>
@@ -32,8 +38,9 @@ const Card = () => {
                         <AddProduct
                             key={index}
                             index={index}
-                            itemName={item}
+                            item={item}
                             deleteItem={deleteItem}
+                            editItem={editItem}
                         />
                     ))}
                 </ul>
